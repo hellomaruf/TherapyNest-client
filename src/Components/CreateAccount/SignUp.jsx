@@ -9,7 +9,7 @@ function SignUp() {
     <div>
       <div className="bg-white hidden sm:block ">
         <div className="grid grid-cols-1 md:grid-cols-2 px-6 items-center justify-center gap-8 h-screen max-w-7xl mx-auto">
-          {/* Login Form */}
+          {/* Signup Form */}
           <div className=" col-span-1">
             <div className="w-full  mx-auto overflow-hidden bg-white rounded-lg ">
               <div className=" py-4 max-w-[450px] mx-auto">
@@ -174,56 +174,68 @@ function SignUp() {
               <div className="">
                 <div className=" py-6 text-center">
                   <h3 className="text-2xl  font-semibold">Sign Up</h3>
-
-                  <p className="mt-1 text-gray-500 text-sm">
-                    Welcome Back! Select a method to log in:
-                  </p>
                 </div>
 
-                <div className="divider py-6 text-sm">
-                  Or Continue with Email
-                </div>
-                <form method="dialog">
+                <form >
                   <div className="">
-                    <div className="w-full mt-">
-                      <label htmlFor="" className="font-medium">
-                        Email
-                      </label>
-                      <input
-                        className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
-                        type="email"
-                        placeholder="Email Address"
-                        aria-label="Email Address"
-                      />
-                    </div>
+                  <div className="w-full">
+                    <label htmlFor="" className="font-medium">
+                      Name
+                    </label>
+                    <input
+                      className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+                      type="text"
+                      placeholder="@username"
+                      aria-label="Name"
+                    />
+                  </div>
+                  <div className="w-full mt-6">
+                    <label htmlFor="" className="font-medium">
+                      Email
+                    </label>
+                    <input
+                      className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+                      type="email"
+                      placeholder="Enter your email"
+                      aria-label="Email Address"
+                    />
+                  </div>
 
-                    <div className="w-full mt-6">
-                      <label htmlFor="" className="font-medium">
-                        Password
-                      </label>
+                  <div className="w-full mt-6">
+                    <label htmlFor="" className="font-medium">
+                      Password
+                    </label>
 
+                    <input
+                      className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+                      type="password"
+                      placeholder="Enter Password"
+                      aria-label="Password"
+                    />
+                  </div>
+                  <div className="w-full mt-6">
+                    <label htmlFor="" className="font-medium">
+                      Confirm Password
+                    </label>
+
+                    <input
+                      className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+                      type="password"
+                      placeholder="Re-type password"
+                      aria-label="Password"
+                    />
+                  </div>
+                  <div className="flex items-center justify-between mt-3">
+                    <div className="flex items-center gap-2">
                       <input
-                        className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
-                        type="password"
-                        placeholder="Password"
-                        aria-label="Password"
+                        type="checkbox"
+                        className="checkbox checkbox-sm [--chkbg:theme(colors.blue.600)]"
                       />
+                      <p className="text-sm text-blue-500">
+                        Accept Terms of Service
+                      </p>
                     </div>
-                    <div className="flex items-center justify-between mt-3">
-                      <div className="flex items-center gap-2">
-                        <input
-                          type="checkbox"
-                          className="checkbox checkbox-sm [--chkbg:theme(colors.blue.600)]"
-                        />
-                        <p className="text-sm">Remember me</p>
-                      </div>
-                      <a
-                        href="#"
-                        className="text-sm text-[#156bca] font-semibold underline "
-                      >
-                        Forget Password?
-                      </a>
-                    </div>
+                  </div>
                     <div className="flex mt-8 items-center justify-center">
                       <button className="bg-[#156bca] btn text-white px-20">
                         Sign Up
