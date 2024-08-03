@@ -4,7 +4,7 @@ import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { IoLogOutOutline } from "react-icons/io5";
 import { PiBell } from "react-icons/pi";
 import logo from "../../assets/Images/logo.png";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import {
   BiGridAlt,
   BiMessageSquareDetail,
@@ -16,10 +16,17 @@ import { FaRegHeart } from "react-icons/fa";
 import { FiSettings } from "react-icons/fi";
 
 function Sidebar() {
+  const location = useLocation();
+  console.log(location.pathname);
+  const currentLocation = location.pathname;
+ 
   const [showSidebar, setShowSidebar] = useState(false);
   const handleShowSidebar = () => {
     setShowSidebar(!showSidebar);
   };
+   if (currentLocation === "/login") {
+    return
+  }
   return (
     <div>
       <Disclosure as="nav" className="fixed w-full z-10">
@@ -49,6 +56,8 @@ function Sidebar() {
             </div>
           </div>
         </div>
+
+        {/* Sidebar Routes */}
         <div
           className={`  h-screen bg-white border-r-2 z-10 fixed top-0 w-60 ${
             showSidebar ? "left-0" : "-left-96"
@@ -145,7 +154,8 @@ function Sidebar() {
                   }
                   to={"/helpCenter"}
                 >
-                  <BiMessageSquareError className="text-xl font-light" /> Help Center
+                  <BiMessageSquareError className="text-xl font-light" /> Help
+                  Center
                 </NavLink>
               </li>
               <li className=" w-full   ">
@@ -162,9 +172,6 @@ function Sidebar() {
                   <FiSettings className="text-xl font-light" /> Settings
                 </NavLink>
               </li>
-
-          
-              
             </ul>
           </div>
         </div>

@@ -51,51 +51,50 @@ function TherapistSearch() {
       </div>
       {/* Slider section */}
       <div className=" mt-8">
+        <h3 className="text-xl font-semibold pb-4">Featured Therapist</h3>
 
-      <h3 className="text-xl font-semibold pb-4">Featured Therapist</h3>
+        <div className=" bg-white p-8  rounded-xl">
+          <Swiper
+            slidesPerView={4}
+            spaceBetween={25}
+            navigation={true}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+            }}
+            modules={[Navigation, Autoplay]}
+            className="mySwiper"
+          >
+            {therapistData?.map((data, index) => (
+              <SwiperSlide key={index}>
+                <div className="card bg-base-100 border border-gray-300 relative">
+                  <figure className="px-4 pt-4">
+                    <img src={data?.image} alt="Shoes" className="rounded-xl" />
+                  </figure>
+                  <div className=" p-4 mb-12">
+                    <h2 className="text-base font-semibold ">{data?.name}</h2>
+                    <div className="my-2">
+                      <h2 className=" text-gray-600 flex items-center gap-1">
+                        <IoMdCar />
+                        {data?.available}
+                      </h2>
+                      <h2 className=" text-gray-600 flex items-center gap-1">
+                        <MdLocationPin />
+                        {data?.location}
+                      </h2>
+                    </div>
 
-      <div className=" bg-white p-8  rounded-xl">
-        <Swiper
-          slidesPerView={4}
-          spaceBetween={20}
-          navigation={true}
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-          }}
-          modules={[Navigation, Autoplay]}
-          className="mySwiper"
-        >
-          {therapistData?.map((data, index) => (
-            <SwiperSlide key={index}>
-              <div className="card bg-base-100 border border-gray-300 relative">
-                <figure className="px-4 pt-4">
-                  <img src={data?.image} alt="Shoes" className="rounded-xl" />
-                </figure>
-                <div className=" p-4 mb-12">
-                  <h2 className="text-base font-semibold ">{data?.name}</h2>
-                  <div className="my-2">
-                    <h2 className=" text-gray-600 flex items-center gap-1">
-                      <IoMdCar />
-                      {data?.available}
-                    </h2>
-                    <h2 className=" text-gray-600 flex items-center gap-1">
-                      <MdLocationPin />
-                      {data?.location}
-                    </h2>
-                  </div>
-
-                  <div className="">
-                    <button className="btn w-full  absolute bottom-0 left-0 bg-[#156BCA] text-white rounded-t-none">
-                      Buy Now
-                    </button>
+                    <div className="">
+                      <button className="btn w-full underline font-medium  absolute bottom-0 left-0 text-gray-900 hover:bg-[#156BCA] bg-[#d4e9ff] hover:text-white rounded-t-none transition duration-200">
+                        See Details
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </div>
       <div className=" grid grid-cols-2 gap-6 mt-6">
         <div className="">
