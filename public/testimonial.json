@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Cafe Mocha",
+    "location": "123 Maple Street, Block 7",
+    "description": "Efficiently enhance web-enabled action items vis-a-vis real-time models. Monotonectally benchmark performance based intellectual capital via collaborative."
+  },
+  {
+    "name": "Greenwood Bookstore",
+    "location": "456 Oak Avenue, Block 12",
+    "description": "A quaint bookstore filled with a diverse collection of books, including rare and vintage editions."
+  },
+  {
+    "name": "Zen Yoga Studio",
+    "location": "789 Pine Road, Block 3",
+    "description": "A serene space offering yoga classes for all levels, focusing on mindfulness and well-being."
+  },
+  {
+    "name": "The Art Gallery",
+    "location": "101 Cedar Lane, Block 5",
+    "description": "An art gallery showcasing contemporary works from local and international artists."
+  },
+  {
+    "name": "Sunshine Bakery",
+    "location": "202 Elm Street, Block 8",
+    "description": "A family-owned bakery known for its delicious cakes, bread, and pastries made from scratch."
+  },
+  {
+    "name": "Harmony Music School",
+    "location": "303 Birch Boulevard, Block 4",
+    "description": "A music school offering lessons in various instruments, with a focus on nurturing musical talent."
+  }
+]

@@ -7,6 +7,8 @@ import { IoMdCar } from "react-icons/io";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import axios from "axios";
+import Testimonial from "./Testimonial";
+import therapist from "../../assets/Images/therapis.png";
 function TherapistSearch() {
   const { data: therapistData } = useQuery({
     queryKey: ["therapist"],
@@ -60,11 +62,7 @@ function TherapistSearch() {
             <SwiperSlide key={index}>
               <div className="card bg-base-100 border border-gray-300 relative">
                 <figure className="px-4 pt-4">
-                  <img
-                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                    alt="Shoes"
-                    className="rounded-xl"
-                  />
+                  <img src={therapist} alt="Shoes" className="rounded-xl" />
                 </figure>
                 <div className=" p-4 mb-12">
                   <h2 className="text-base font-semibold ">{data?.name}</h2>
@@ -89,6 +87,17 @@ function TherapistSearch() {
             </SwiperSlide>
           ))}
         </Swiper>
+      </div>
+      <div className=" grid grid-cols-2 gap-6 mt-6">
+        <div className="  col-span-1 bg-white rounded-xl">
+          <Testimonial />
+        </div>
+        <div className=" bg-amber-900 z-10 col-span-1">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
+          molestias dignissimos cupiditate inventore facilis nisi harum.
+          Similique sapiente velit recusandae facilis cum facere, rem commodi
+          suscipit, iure amet animi voluptate.
+        </div>
       </div>
     </div>
   );
