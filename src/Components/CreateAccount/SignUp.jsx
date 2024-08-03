@@ -1,13 +1,14 @@
 import logo from "../../assets/Images/logo.png";
-import loginImg from "../../assets/Images/login.png";
+import loginImg from "../../assets/Images/signin.png";
 import logo1 from "../../assets/Images/logo1.png";
+
 import { Link } from "react-router-dom";
 
 function SignUp() {
   return (
     <div>
-      <div className="bg-white hidden  sm:block ">
-        <div className="grid grid-cols-2 px-6 items-center justify-center gap-8 h-screen max-w-7xl mx-auto">
+      <div className="bg-white hidden sm:block ">
+        <div className="grid grid-cols-1 md:grid-cols-2 px-6 items-center justify-center gap-8 h-screen max-w-7xl mx-auto">
           {/* Login Form */}
           <div className=" col-span-1">
             <div className="w-full  mx-auto overflow-hidden bg-white rounded-lg ">
@@ -112,15 +113,8 @@ function SignUp() {
             </div>
           </div>
           <div className=" col-span-1 relative">
-            <div className=" max-w-lg">
+            <div className=" max-w-lg mx-auto">
               <img className="" src={loginImg} alt="" />
-            </div>
-            <div className=" font-medium absolute bottom-[250px] right-1/3 text-center p-6 py-10 bg-black bg-opacity-45 rounded-xl max-w-72">
-              <p className="text-white text-lg">
-                <span className="text-[#1676d9]">Create Account</span>
-                <br />
-                Fill in Your Information
-              </p>
             </div>
           </div>
         </div>

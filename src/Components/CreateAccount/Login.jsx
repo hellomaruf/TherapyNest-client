@@ -10,7 +10,7 @@ function Login() {
   return (
     <div className="">
       <div className="bg-white hidden  sm:block">
-        <div className="grid grid-cols-2 px-6 items-center justify-center gap-8 h-screen max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 px-6 items-center justify-center gap-8 h-screen max-w-7xl mx-auto">
           {/* Login Form */}
           <div className=" col-span-1">
             <div className="w-full  mx-auto overflow-hidden bg-white rounded-lg ">
@@ -28,12 +28,12 @@ function Login() {
                     Welcome Back! Select a method to log in:
                   </p>
                 </div>
-                <div className="flex items-center justify-between">
-                  <button className="btn px-12 bg-gradient-to-r from-[#e6e6e6] shadow-md to-[#fff]">
+                <div className="flex items-center gap-10 justify-between">
+                  <button className="btn flex-1  bg-gradient-to-r from-[#e6e6e6] shadow-md to-[#fff]">
                     <img className="w-5" src={google} alt="" />
                     Google
                   </button>
-                  <button className="btn px-10 bg-[#278dfe] hover:bg-[#0b7dff] text-white">
+                  <button className="btn flex-1  bg-[#278dfe] hover:bg-[#0b7dff] text-white">
                     <img className="w-6 " src={facebook} alt="" />
                     Facebook
                   </button>
@@ -103,15 +103,9 @@ function Login() {
               </div>
             </div>
           </div>
-          <div className=" col-span-1 relative">
-            <div className=" max-w-lg">
+          <div className=" col-span-1 ">
+            <div className=" max-w-lg mx-auto">
               <img className="" src={loginImg} alt="" />
-            </div>
-            <div className=" font-medium absolute bottom-[250px] right-1/3 text-center p-6 py-10 bg-black bg-opacity-45 rounded-xl max-w-72">
-              <p className="text-white text-lg">
-                <span className="text-[#1676d9]">Sign In</span> to view all the
-                massage therapists
-              </p>
             </div>
           </div>
         </div>
@@ -155,7 +149,6 @@ function Login() {
                     >
                       <span className="text-[#1676d9]">Sign In </span>
                     </label>
-                   
                     to view all the massage therapists
                   </p>
                 </div>
