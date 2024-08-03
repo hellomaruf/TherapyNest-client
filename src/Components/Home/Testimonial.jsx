@@ -7,6 +7,7 @@ import axios from "axios";
 import { MdLocationPin } from "react-icons/md";
 import { Pagination,Autoplay } from 'swiper/modules';
 
+
 function Testimonial() {
   const { data: testimonial } = useQuery({
     queryKey: ["testimonial"],
@@ -15,7 +16,6 @@ function Testimonial() {
       return data;
     },
   });
-
   return (
     <div>
       <Swiper

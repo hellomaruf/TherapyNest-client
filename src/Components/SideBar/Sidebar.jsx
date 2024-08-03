@@ -1,5 +1,5 @@
 import { Disclosure, DisclosureButton } from "@headlessui/react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { IoLogOutOutline } from "react-icons/io5";
 import { PiBell } from "react-icons/pi";
@@ -14,8 +14,11 @@ import { LuUsers } from "react-icons/lu";
 import { RiSearchLine } from "react-icons/ri";
 import { FaRegHeart } from "react-icons/fa";
 import { FiSettings } from "react-icons/fi";
+import { AuthContaxt } from "../../services/AuthProvider";
 
 function Sidebar() {
+  const { name } = useContext(AuthContaxt);
+  console.log(name);
   const location = useLocation();
   console.log(location.pathname);
   const currentLocation = location.pathname;
@@ -30,6 +33,7 @@ function Sidebar() {
   if (currentLocation === "/signup") {
     return;
   }
+
   return (
     <div>
       <Disclosure as="nav" className="fixed w-full z-10">
