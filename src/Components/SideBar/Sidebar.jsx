@@ -19,13 +19,16 @@ function Sidebar() {
   const location = useLocation();
   console.log(location.pathname);
   const currentLocation = location.pathname;
- 
+
   const [showSidebar, setShowSidebar] = useState(false);
   const handleShowSidebar = () => {
     setShowSidebar(!showSidebar);
   };
-   if (currentLocation === "/login") {
-    return
+  if (currentLocation === "/login") {
+    return;
+  }
+  if (currentLocation === "/signup") {
+    return;
   }
   return (
     <div>

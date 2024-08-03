@@ -2,6 +2,7 @@ import logo from "../../assets/Images/logo.png";
 import facebook from "../../assets/Images/facebook.png";
 import google from "../../assets/Images/google.png";
 import loginImg from "../../assets/Images/login.png";
+import { Link } from 'react-router-dom';
 
 function Login() {
   return (
@@ -25,16 +26,16 @@ function Login() {
                 </p>
               </div>
               <div className="flex items-center justify-between">
-                <button className="btn px-12 bg-gradient-to-r from-[#e6e6e6] to-[#fff]">
+                <button className="btn px-12 bg-gradient-to-r from-[#e6e6e6] shadow-md to-[#fff]">
                   <img className="w-5" src={google} alt="" />
                   Google
                 </button>
-                <button className="btn px-10 bg-[#278dfe] text-white">
+                <button className="btn px-10 bg-[#278dfe] hover:bg-[#0b7dff] text-white">
                   <img className="w-6 " src={facebook} alt="" />
                   Facebook
                 </button>
               </div>
-              <div className="divider py-6">Or Continue with Email</div>
+              <div className="divider py-6 text-sm">Or Continue with Email</div>
               <form>
                 <div className="w-full mt-">
                   <label htmlFor="" className="font-medium">
@@ -70,7 +71,7 @@ function Login() {
                   </div>
                   <a
                     href="#"
-                    className="text-sm text-[#156bca] underline  hover:text-gray-500"
+                    className="text-sm text-[#156bca] font-semibold underline "
                   >
                     Forget Password?
                   </a>
@@ -88,12 +89,12 @@ function Login() {
                 Dont have an account?{" "}
               </span>
 
-              <a
-                href="#"
-                className="mx-2 text-sm font-bold text-blue-500 dark:text-blue-400 hover:underline"
+              <Link
+                to={'/signup'}
+                className="mx-2 underline text-sm font-semibold text-[#1676d9] hover:underline"
               >
-                Register
-              </a>
+                Create a Account
+              </Link>
             </div>
           </div>
         </div>
@@ -101,7 +102,7 @@ function Login() {
           <div className=" max-w-lg">
             <img className="" src={loginImg} alt="" />
           </div>
-          <div className=" font-medium absolute bottom-1/2 right-1/3 text-center p-6 py-10 bg-black bg-opacity-45 rounded-xl max-w-72">
+          <div className=" font-medium absolute bottom-[250px] right-1/3 text-center p-6 py-10 bg-black bg-opacity-45 rounded-xl max-w-72">
             <p className="text-white text-lg">
               <span className="text-[#1676d9]">Sign In</span> to view all the
               massage therapists
