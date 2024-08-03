@@ -117,6 +117,7 @@ function Login() {
         </div>
       </div>
 
+      {/* For mobile device */}
       <div className="sm:hidden">
         <div
           className="hero min-h-screen"
@@ -152,10 +153,10 @@ function Login() {
                         document.getElementById("my_modal_5").showModal()
                       }
                     >
-                      <span className="text-[#1676d9]">Create Account</span>
+                      <span className="text-[#1676d9]">Sign In </span>
                     </label>
-                    <br />
-                    Fill in Your Information
+                   
+                    to view all the massage therapists
                   </p>
                 </div>
               </div>
