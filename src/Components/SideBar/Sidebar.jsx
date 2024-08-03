@@ -4,6 +4,7 @@ import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { IoLogOutOutline } from "react-icons/io5";
 import { PiBell } from "react-icons/pi";
 
+
 function Sidebar() {
   const [showSidebar, setShowSidebar] = useState(false);
   const handleShowSidebar = () => {
@@ -42,7 +43,9 @@ function Sidebar() {
           className={`p-6  h-screen bg-white z-10 fixed top-0 w-60 ${
             showSidebar ? "left-0" : "-left-96"
           }  md:left-0 peer:transition ease-out delay-150 duration-200`}
-        ></div>
+        >
+          logo
+        </div>
       </Disclosure>
     </div>
   );

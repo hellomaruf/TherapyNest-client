@@ -1,13 +1,25 @@
-import { useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
 import img from "../../assets/Images/headerImg.png";
 import "swiper/css";
 import "swiper/css/navigation";
-// import required modules
+import { MdLocationPin } from "react-icons/md";
+import { IoMdCar } from "react-icons/io";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import axios from "axios";
 function TherapistSearch() {
+  const { data: therapistData } = useQuery({
+    queryKey: ["therapist"],
+    queryFn: async () => {
+      const { data } = await axios.get("therapist.json");
+      return data;
+    },
+  });
+  console.log(therapistData);
+
   return (
     <div className="p-8 pt-28">
+      {/* Search section */}
       <div className="bg-white rounded-xl p-8  grid grid-cols-2 justify-between gap-6 items-center">
         <div className="space-y-4">
           <h2 className="text-xl font-semibold">
@@ -35,23 +47,47 @@ function TherapistSearch() {
           <img className="" src={img} alt="" />
         </div>
       </div>
-      <div className=" mt-6">
+      {/* Slider section */}
+      <div className=" mt-6 bg-white p-8  rounded-xl">
         <Swiper
-          slidesPerView={3}
-          spaceBetween={30}
+          slidesPerView={4}
+          spaceBetween={20}
           navigation={true}
           modules={[Navigation]}
           className="mySwiper"
         >
-          <SwiperSlide>Slide 1</SwiperSlide>
-          <SwiperSlide>Slide 2</SwiperSlide>
-          <SwiperSlide>Slide 3</SwiperSlide>
-          <SwiperSlide>Slide 4</SwiperSlide>
-          <SwiperSlide>Slide 5</SwiperSlide>
-          <SwiperSlide>Slide 6</SwiperSlide>
-          <SwiperSlide>Slide 7</SwiperSlide>
-          <SwiperSlide>Slide 8</SwiperSlide>
-          <SwiperSlide>Slide 9</SwiperSlide>
+          {therapistData?.map((data, index) => (
+            <SwiperSlide key={index}>
+              <div className="card bg-base-100 border border-gray-300 relative">
+                <figure className="px-4 pt-4">
+                  <img
+                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+                    alt="Shoes"
+                    className="rounded-xl"
+                  />
+                </figure>
+                <div className=" p-4 mb-12">
+                  <h2 className="text-base font-semibold ">{data?.name}</h2>
+                  <div className="my-2">
+                    <h2 className=" text-gray-600 flex items-center gap-1">
+                      <IoMdCar />
+                      {data?.available}
+                    </h2>
+                    <h2 className=" text-gray-600 flex items-center gap-1">
+                      <MdLocationPin />
+                      {data?.location}
+                    </h2>
+                  </div>
+
+                  <div className="">
+                    <button className="btn w-full  absolute bottom-0 left-0 bg-[#156BCA] text-white rounded-t-none">
+                      Buy Now
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
     </div>
