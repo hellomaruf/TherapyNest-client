@@ -12,7 +12,7 @@ function Sidebar() {
   };
   return (
     <div>
-      <Disclosure as="nav" className='fixed w-full'>
+      <Disclosure as="nav" className='fixed w-full z-10'>
         <div className="h-20 bg-white  ">
           <div className="md:ml-[250px] flex items-center h-full justify-between ease-out delay-150 px-4 duration-200">
             <div className="">hello</div>

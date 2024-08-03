@@ -4,12 +4,13 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { MdLocationPin } from "react-icons/md";
 import { IoMdCar } from "react-icons/io";
-import { Navigation } from "swiper/modules";
+import { Autoplay, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import axios from "axios";
 import Testimonial from "./Testimonial";
-import therapist from "../../assets/Images/therapis.png";
+import PopularCities from "./PopularCities";
 function TherapistSearch() {
+  // Get data from static json*************
   const { data: therapistData } = useQuery({
     queryKey: ["therapist"],
     queryFn: async () => {
@@ -17,7 +18,6 @@ function TherapistSearch() {
       return data;
     },
   });
-  console.log(therapistData);
 
   return (
     <div className="p-8 pt-28">
@@ -50,19 +50,27 @@ function TherapistSearch() {
         </div>
       </div>
       {/* Slider section */}
-      <div className=" mt-6 bg-white p-8  rounded-xl">
+      <div className=" mt-8">
+
+      <h3 className="text-xl font-semibold pb-4">Featured Therapist</h3>
+
+      <div className=" bg-white p-8  rounded-xl">
         <Swiper
           slidesPerView={4}
           spaceBetween={20}
           navigation={true}
-          modules={[Navigation]}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+          modules={[Navigation, Autoplay]}
           className="mySwiper"
         >
           {therapistData?.map((data, index) => (
             <SwiperSlide key={index}>
               <div className="card bg-base-100 border border-gray-300 relative">
                 <figure className="px-4 pt-4">
-                  <img src={therapist} alt="Shoes" className="rounded-xl" />
+                  <img src={data?.image} alt="Shoes" className="rounded-xl" />
                 </figure>
                 <div className=" p-4 mb-12">
                   <h2 className="text-base font-semibold ">{data?.name}</h2>
@@ -88,15 +96,20 @@ function TherapistSearch() {
           ))}
         </Swiper>
       </div>
+      </div>
       <div className=" grid grid-cols-2 gap-6 mt-6">
-        <div className="  col-span-1 bg-white rounded-xl">
-          <Testimonial />
+        <div className="">
+          <h3 className="text-xl font-semibold pb-4">Featured Testimonial</h3>
+          <div className="  col-span-1 bg-white rounded-xl">
+            <Testimonial />
+          </div>
         </div>
-        <div className=" bg-amber-900 z-10 col-span-1">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
-          molestias dignissimos cupiditate inventore facilis nisi harum.
-          Similique sapiente velit recusandae facilis cum facere, rem commodi
-          suscipit, iure amet animi voluptate.
+        <div className="">
+          <h3 className="text-xl font-semibold pb-4">Popular Cities</h3>
+
+          <div className=" bg-white col-span-1 rounded-xl">
+            <PopularCities />
+          </div>
         </div>
       </div>
     </div>
