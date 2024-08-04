@@ -22,7 +22,7 @@ function TherapistSearch() {
   return (
     <div className="p-8 pt-28">
       {/* Search section */}
-      <div className="bg-white rounded-xl p-8  grid grid-cols-2 justify-between gap-6 items-center">
+      <div className="bg-white rounded-xl p-8  grid grid-cols-1 lg:grid-cols-2 justify-between gap-6 items-center">
         <div className="space-y-4">
           <h2 className="text-xl font-semibold">
             Im Looking for Massage Therapist Near...
@@ -53,9 +53,31 @@ function TherapistSearch() {
       <div className=" mt-8">
         <h3 className="text-xl font-semibold pb-4">Featured Therapist</h3>
 
-        <div className=" bg-white p-8  rounded-xl">
+        <div className=" bg-white p-8  rounded-xl h-full">
           <Swiper
             slidesPerView={4}
+            breakpoints={{
+              1:{
+                slidesPerView: 1,
+                spaceBetween: 20,
+              },
+              640: {
+                slidesPerView: 1,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 30,
+              },
+              900: {
+                slidesPerView: 3,
+                spaceBetween: 20,
+              },
+              1180: {
+                slidesPerView: 4,
+                spaceBetween: 30,
+              },
+            }}
             spaceBetween={25}
             navigation={true}
             autoplay={{
@@ -69,7 +91,7 @@ function TherapistSearch() {
               <SwiperSlide key={index}>
                 <div className="card bg-base-100 border border-gray-300 h-full relative">
                   <figure className="px-4 pt-4">
-                    <img src={data?.image} alt="Shoes" className="rounded-xl" />
+                    <img src={data?.image} alt="Shoes" className="rounded-xl w-full" />
                   </figure>
                   <div className=" p-4 mb-12">
                     <h2 className="text-base font-semibold ">{data?.name}</h2>
@@ -96,7 +118,10 @@ function TherapistSearch() {
           </Swiper>
         </div>
       </div>
-      <div className=" grid grid-cols-2 gap-6 mt-6">
+
+      {/* Features testimonial and popular cities section */}
+
+      <div className=" grid grid-cols-1 xl:grid-cols-2 gap-6 mt-6">
         <div className="">
           <h3 className="text-xl font-semibold pb-4">Featured Testimonial</h3>
           <div className="  col-span-1 bg-white rounded-xl">

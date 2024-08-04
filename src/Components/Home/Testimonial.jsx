@@ -5,8 +5,7 @@ import "swiper/css";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { MdLocationPin } from "react-icons/md";
-import { Pagination,Autoplay } from 'swiper/modules';
-
+import { Pagination, Autoplay } from "swiper/modules";
 
 function Testimonial() {
   const { data: testimonial } = useQuery({
@@ -23,18 +22,21 @@ function Testimonial() {
           clickable: true,
         }}
         direction={"horizontal"}
-       
-        modules={[Pagination,Autoplay]}
+        modules={[Pagination, Autoplay]}
         className="mySwiper"
       >
         {testimonial?.map((data, index) => (
           <SwiperSlide className="p-6 space-y-6" key={index}>
-            <div className=" bg-base-100  grid grid-cols-8 border border-gray-300 rounded-xl">
-              <div className="rounded-xl p-5 col-span-3">
-                <img className="rounded-2xl w-[180px] " src={img} alt="Movie" />
+            <div className=" bg-base-100  grid grid-cols-1 lg:grid-cols-8 border border-gray-300 rounded-xl">
+              <div className="rounded-xl p-3 col-span-3">
+                <img
+                  className="rounded-3xl md:rounded-2xl w-full "
+                  src={img}
+                  alt="Movie"
+                />
               </div>
 
-              <div className=" col-span-5 py-5 pr-4 space-y-2">
+              <div className=" col-span-5 py-5 px-4 space-y-2">
                 <h2 className=" text-gray-600 flex items-center gap-1">
                   <MdLocationPin />
                   {data?.location}
@@ -46,15 +48,15 @@ function Testimonial() {
                 <p className="text-gray-600">{data?.description}</p>
               </div>
             </div>
-            <div className=" bg-base-100 grid grid-cols-8 border border-gray-300 rounded-xl">
-              <div className="rounded-xl p-5 col-span-3">
+            <div className=" bg-base-100 grid grid-cols-1 lg:grid-cols-8 border border-gray-300 rounded-xl">
+              <div className="rounded-xl p-3 col-span-3">
                 <img
-                  className="rounded-2xl w-[180px] "
+                  className="rounded-3xl md:rounded-2xl w-full  "
                   src={img1}
                   alt="Movie"
                 />
               </div>
-              <div className=" col-span-5 py-5 pr-4 space-y-2">
+              <div className=" col-span-5 py-5 px-4 space-y-2">
                 <h2 className=" text-gray-600 flex items-center gap-1">
                   <MdLocationPin />
                   {data?.location}
