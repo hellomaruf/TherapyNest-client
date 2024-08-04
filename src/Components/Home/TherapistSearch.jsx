@@ -9,7 +9,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import axios from "axios";
 import Testimonial from "./Testimonial";
 import PopularCities from "./PopularCities";
+import { useEffect, useState } from "react";
 function TherapistSearch() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
+
   // Get data from static json*************
   const { data: therapistData } = useQuery({
     queryKey: ["therapist"],
@@ -19,6 +23,18 @@ function TherapistSearch() {
     },
   });
 
+  // Added search functionality by city name*****************
+  useEffect(() => {
+    // Filter data based on search query***********
+    if (searchQuery === "") {
+      setFilteredData(therapistData);
+    } else {
+      const filtered = therapistData.filter((item) =>
+        item.location.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setFilteredData(filtered);
+    }
+  }, [searchQuery, therapistData]);
   return (
     <div className="">
       {/* Search section */}
@@ -40,6 +56,7 @@ function TherapistSearch() {
                 type="text"
                 className="bg-gray-100 rounded-lg p-4 outline-none w-72"
                 placeholder="ZIP code or city name"
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
               <button className="bg-[#156bca] text-white py-2 px-6 font-semibold absolute right-2 top-2 rounded-lg">
                 Go
@@ -89,7 +106,7 @@ function TherapistSearch() {
             modules={[Navigation, Autoplay]}
             className="mySwiper"
           >
-            {therapistData?.map((data, index) => (
+            {filteredData?.map((data, index) => (
               <SwiperSlide key={index}>
                 <div className="card bg-base-100 border border-gray-300 h-full relative">
                   <figure className="px-4 pt-4">
@@ -129,13 +146,17 @@ function TherapistSearch() {
 
       <div className=" grid grid-cols-1 xl:grid-cols-2 gap-6 mt-6 md:mx-8">
         <div className="">
-          <h3 className="text-xl font-semibold pb-4 md:pl-0 pl-6">Featured Testimonial</h3>
+          <h3 className="text-xl font-semibold pb-4 md:pl-0 pl-6">
+            Featured Testimonial
+          </h3>
           <div className="  col-span-1  bg-white rounded-xl">
             <Testimonial />
           </div>
         </div>
         <div className="">
-          <h3 className="text-xl font-semibold pb-4 md:pl-0 pl-6">Popular Cities</h3>
+          <h3 className="text-xl font-semibold pb-4 md:pl-0 pl-6">
+            Popular Cities
+          </h3>
 
           <div className=" bg-white col-span-1 rounded-xl">
             <PopularCities />
