@@ -4,7 +4,7 @@ import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { IoLogOutOutline } from "react-icons/io5";
 import { PiBell } from "react-icons/pi";
 import logo from "../../assets/Images/logo.png";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
   BiGridAlt,
   BiMessageSquareDetail,
@@ -20,6 +20,7 @@ import toast from "react-hot-toast";
 
 function Sidebar() {
   const { user, logout, setUser } = useContext(AuthContaxt);
+  const navigate = useNavigate()
   const location = useLocation();
   const currentLocation = location.pathname;
 
@@ -35,7 +36,8 @@ function Sidebar() {
   }
   const handleLogout = () => {
     logout();
-    setUser(null);
+    navigate('/login')
+    setUser("");
     toast.success("Logout Successfull");
   };
   return (
@@ -228,11 +230,17 @@ function Sidebar() {
             ></label>
             <ul className="menu bg-base-100 rounded-none text-base-content min-h-full w-64 m-0 p-0">
               <div className="w-full  bg-[#156bca] space-y-2  p-6 text-center flex flex-col items-center">
-                <img className="rounded-full w-[80px]" src={user?.photoURL} alt="" />
+                <img
+                  className="rounded-full w-[80px]"
+                  src={user?.photoURL}
+                  alt=""
+                />
                 <div className="">
-                <h2 className="text-lg font-semibold text-white">{user?.displayName}</h2>
-                <h2 className="text-gray-200">{ user?.email}</h2>
-               </div>
+                  <h2 className="text-lg font-semibold text-white">
+                    {user?.displayName}
+                  </h2>
+                  <h2 className="text-gray-200">{user?.email}</h2>
+                </div>
               </div>
               <li className=" w-full rounded-none mt-8 ">
                 <NavLink

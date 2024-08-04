@@ -3,7 +3,7 @@ import logo1 from "../../assets/Images/logo1.png";
 import facebook from "../../assets/Images/facebook.png";
 import google from "../../assets/Images/google.png";
 import loginImg from "../../assets/Images/login.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
 import { AuthContaxt } from "../../services/AuthProvider";
@@ -12,6 +12,8 @@ import toast from "react-hot-toast";
 
 function Login() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state || "/";
   const [isChecked, setIsChecked] = useState(false);
   const [error, setError] = useState("");
   const handleCheckboxChange = (event) => {
@@ -32,7 +34,7 @@ function Login() {
         .then((res) => {
           console.log(res.user);
           if (res.user) {
-            navigate("/");
+            navigate(from);
             toast.success(`SignIn ${email}`);
           }
         })
@@ -56,7 +58,7 @@ function Login() {
         .then((res) => {
           console.log(res.user);
           if (res.user) {
-            navigate("/");
+            navigate(from);
             toast.success(`SignIn ${email}`);
           }
         })
