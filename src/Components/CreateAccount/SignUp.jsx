@@ -1,10 +1,55 @@
 import logo from "../../assets/Images/logo.png";
 import loginImg from "../../assets/Images/signin.png";
 import logo1 from "../../assets/Images/logo1.png";
-
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { AuthContaxt } from "./../../services/AuthProvider";
 
 function SignUp() {
+  const [isChecked, setIsChecked] = useState(false);
+  const [error, setError] = useState("");
+  const { createNewUser } = useContext(AuthContaxt);
+  const handleCheckboxChange = (event) => {
+    setIsChecked(event.target.checked);
+  };
+  console.log(isChecked);
+
+  const {
+    register,
+    handleSubmit,
+
+    // formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+    const name = data?.name;
+    const email = data?.email;
+    const password = data?.password;
+    const re_password = data?.re_password;
+    if (password === re_password) {
+      setError('')
+      if (isChecked === true) {
+        setError('')
+        createNewUser(email, password)
+          .then((res) => {
+            console.log(res.user);
+            setError('')
+          })
+          .catch((error) => {
+          
+            setError(error.message)
+          });
+      } else {
+        console.log("please Accept Terms of Service");
+        setError("please Accept Terms of Service");
+      }
+    } else {
+      console.log("Password did not match");
+      setError("Password did not match");
+    }
+  };
   return (
     <div>
       <div className="bg-white hidden sm:block ">
@@ -31,14 +76,16 @@ function SignUp() {
                   </p>
                 </div>
 
-                <form>
+                <form onSubmit={handleSubmit(onSubmit)}>
                   <div className="w-full">
                     <label htmlFor="" className="font-medium">
                       Name
                     </label>
                     <input
+                      {...register("name", { required: true })}
                       className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
                       type="text"
+                      name="name"
                       placeholder="@username"
                       aria-label="Name"
                     />
@@ -48,8 +95,10 @@ function SignUp() {
                       Email
                     </label>
                     <input
+                      {...register("email", { required: true })}
                       className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
                       type="email"
+                      name="email"
                       placeholder="Enter your email"
                       aria-label="Email Address"
                     />
@@ -61,8 +110,10 @@ function SignUp() {
                     </label>
 
                     <input
+                      {...register("password", { required: true })}
                       className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
                       type="password"
+                      name="password"
                       placeholder="Enter Password"
                       aria-label="Password"
                     />
@@ -73,22 +124,27 @@ function SignUp() {
                     </label>
 
                     <input
+                      {...register("re_password", { required: true })}
                       className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
                       type="password"
+                      name="re_password"
                       placeholder="Re-type password"
                       aria-label="Password"
                     />
                   </div>
-                  <div className="flex items-center justify-between mt-3">
+                  <div className=" mt-3">
                     <div className="flex items-center gap-2">
                       <input
                         type="checkbox"
+                        checked={isChecked}
+                        onChange={handleCheckboxChange}
                         className="checkbox checkbox-sm [--chkbg:theme(colors.blue.600)]"
                       />
                       <p className="text-sm text-blue-500">
                         Accept Terms of Service
                       </p>
                     </div>
+                    <p className="text-sm text-red-600 mt-2">{error}</p>
                   </div>
                   <div className="flex mt-12 items-center justify-center">
                     <button className="bg-[#156bca] btn text-white px-20">
@@ -176,66 +232,66 @@ function SignUp() {
                   <h3 className="text-2xl  font-semibold">Sign Up</h3>
                 </div>
 
-                <form >
+                <form>
                   <div className="">
-                  <div className="w-full">
-                    <label htmlFor="" className="font-medium">
-                      Name
-                    </label>
-                    <input
-                      className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
-                      type="text"
-                      placeholder="@username"
-                      aria-label="Name"
-                    />
-                  </div>
-                  <div className="w-full mt-6">
-                    <label htmlFor="" className="font-medium">
-                      Email
-                    </label>
-                    <input
-                      className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
-                      type="email"
-                      placeholder="Enter your email"
-                      aria-label="Email Address"
-                    />
-                  </div>
-
-                  <div className="w-full mt-6">
-                    <label htmlFor="" className="font-medium">
-                      Password
-                    </label>
-
-                    <input
-                      className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
-                      type="password"
-                      placeholder="Enter Password"
-                      aria-label="Password"
-                    />
-                  </div>
-                  <div className="w-full mt-6">
-                    <label htmlFor="" className="font-medium">
-                      Confirm Password
-                    </label>
-
-                    <input
-                      className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
-                      type="password"
-                      placeholder="Re-type password"
-                      aria-label="Password"
-                    />
-                  </div>
-                  <div className="flex items-center justify-between mt-3">
-                    <div className="flex items-center gap-2">
+                    <div className="w-full">
+                      <label htmlFor="" className="font-medium">
+                        Name
+                      </label>
                       <input
-                        type="checkbox"
-                        className="checkbox checkbox-sm [--chkbg:theme(colors.blue.600)]"
+                        className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+                        type="text"
+                        placeholder="@username"
+                        aria-label="Name"
                       />
-                      <p className="text-sm text-blue-500">
-                        Accept Terms of Service
-                      </p>
                     </div>
-                  </div>
+                    <div className="w-full mt-6">
+                      <label htmlFor="" className="font-medium">
+                        Email
+                      </label>
+                      <input
+                        className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+                        type="email"
+                        placeholder="Enter your email"
+                        aria-label="Email Address"
+                      />
+                    </div>
+
+                    <div className="w-full mt-6">
+                      <label htmlFor="" className="font-medium">
+                        Password
+                      </label>
+
+                      <input
+                        className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+                        type="password"
+                        placeholder="Enter Password"
+                        aria-label="Password"
+                      />
+                    </div>
+                    <div className="w-full mt-6">
+                      <label htmlFor="" className="font-medium">
+                        Confirm Password
+                      </label>
+
+                      <input
+                        className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+                        type="password"
+                        placeholder="Re-type password"
+                        aria-label="Password"
+                      />
+                    </div>
+                    <div className="flex items-center justify-between mt-3">
+                      <div className="flex items-center gap-2">
+                        <input
+                          type="checkbox"
+                          className="checkbox checkbox-sm [--chkbg:theme(colors.blue.600)]"
+                        />
+                        <p className="text-sm text-blue-500">
+                          Accept Terms of Service
+                        </p>
+                      </div>
+                    </div>
                     <div className="flex mt-8 items-center justify-center">
                       <button className="bg-[#156bca] btn text-white px-20">
                         Sign Up
