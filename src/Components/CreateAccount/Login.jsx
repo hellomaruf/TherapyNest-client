@@ -170,7 +170,7 @@ function Login() {
                   <p className="text-sm text-red-600 pt-2">{error}</p>
 
                   <div className="flex mt-12 items-center justify-center">
-                    <button className="bg-[#156bca] btn text-white px-20">
+                    <button className="bg-[#156bca] hover:bg-[#084e99] btn text-white px-20">
                       Sign In
                     </button>
                   </div>
@@ -323,7 +323,7 @@ function Login() {
                     <p className="text-sm text-red-600 pt-2">{error}</p>
 
                     <div className="flex mt-8 items-center justify-center">
-                      <button className="bg-[#156bca] btn text-white px-20">
+                      <button className="bg-[#156bca] hover:bg-[#084e99] btn text-white px-20">
                         Sign In
                       </button>
                     </div>

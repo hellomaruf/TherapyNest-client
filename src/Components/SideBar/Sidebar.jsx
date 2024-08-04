@@ -20,7 +20,7 @@ import toast from "react-hot-toast";
 
 function Sidebar() {
   const { user, logout, setUser } = useContext(AuthContaxt);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const location = useLocation();
   const currentLocation = location.pathname;
 
@@ -36,7 +36,7 @@ function Sidebar() {
   }
   const handleLogout = () => {
     logout();
-    navigate('/login')
+    navigate("/login");
     setUser("");
     toast.success("Logout Successfull");
   };
@@ -117,7 +117,7 @@ function Sidebar() {
                     ` p-4 w-full flex gap-4 items-center ${
                       isActive
                         ? "bg-[#d4e9ff] text-gray-900 font-medium border-l-4 border-[#102c4a] "
-                        : "bg-gray-200 text-gray-900 "
+                        : " text-gray-900 "
                     }`
                   }
                   to={"/"}
@@ -134,7 +134,7 @@ function Sidebar() {
                         : " text-gray-500 "
                     }`
                   }
-                  to={"/listing"}
+                  to={"/comingListing"}
                 >
                   <LuUsers className="text-xl font-light" /> New Listing
                 </NavLink>
@@ -148,7 +148,7 @@ function Sidebar() {
                         : " text-gray-500 "
                     }`
                   }
-                  to={"/search"}
+                  to={"/ComingSearch"}
                 >
                   <RiSearchLine className="text-xl font-light" /> Search
                 </NavLink>
@@ -162,7 +162,7 @@ function Sidebar() {
                         : " text-gray-500 "
                     }`
                   }
-                  to={"/about"}
+                  to={"/comingAbout"}
                 >
                   <BiMessageSquareDetail className="text-xl font-light" /> About
                 </NavLink>
@@ -176,7 +176,7 @@ function Sidebar() {
                         : " text-gray-500 "
                     }`
                   }
-                  to={"/favorites"}
+                  to={"/comingFavorites"}
                 >
                   <FaRegHeart className="text-xl font-light" /> Favorites
                 </NavLink>
@@ -248,7 +248,7 @@ function Sidebar() {
                     ` p-4 w-full flex gap-4 rounded-none items-center ${
                       isActive
                         ? "bg-[#d4e9ff]  text-gray-900 font-medium border-l-4 border-[#102c4a] "
-                        : "bg-gray-200 text-gray-900 "
+                        : " text-gray-900 "
                     }`
                   }
                   to={"/"}
@@ -265,7 +265,7 @@ function Sidebar() {
                         : " text-gray-500 "
                     }`
                   }
-                  to={"/listing"}
+                  to={"/comingListing"}
                 >
                   <LuUsers className="text-xl font-light" /> New Listing
                 </NavLink>
@@ -279,7 +279,7 @@ function Sidebar() {
                         : " text-gray-500 "
                     }`
                   }
-                  to={"/search"}
+                  to={"/ComingSearch"}
                 >
                   <RiSearchLine className="text-xl font-light" /> Search
                 </NavLink>
@@ -293,7 +293,7 @@ function Sidebar() {
                         : " text-gray-500 "
                     }`
                   }
-                  to={"/about"}
+                  to={"/comingAbout"}
                 >
                   <BiMessageSquareDetail className="text-xl font-light" /> About
                 </NavLink>
@@ -307,7 +307,7 @@ function Sidebar() {
                         : " text-gray-500 "
                     }`
                   }
-                  to={"/favorites"}
+                  to={"/comingFavorites"}
                 >
                   <FaRegHeart className="text-xl font-light" /> Favorites
                 </NavLink>
