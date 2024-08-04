@@ -23,10 +23,7 @@ function Testimonial() {
           clickable: true,
         }}
         direction={"horizontal"}
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-        }}
+       
         modules={[Pagination,Autoplay]}
         className="mySwiper"
       >

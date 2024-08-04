@@ -2,61 +2,61 @@
     {
       "name": "John Doe",
       "image": "https://i.ibb.co/gm9t8Nk/therapis.png",
-      "location": "123 Elm Street, Block A",
+      "location": "123 Elm Street, Block",
       "available": "Mobile & In Studio"
     },
     {
       "name": "Jane Smith",
       "image": "https://i.ibb.co/GMv7hV6/therapist1.png",
-      "location": "456 Maple Avenue, Block B",
+      "location": "456 Maple , Block B",
       "available": "Mobile & In Studio"
     },
     {
       "name": "Michael Johnson",
       "image": "https://i.ibb.co/YDz1vS7/therapist2.png",
-      "location": "789 Oak Road, Block C",
+      "location": "789  Road, Block C",
       "available": "Mobile & In Studio"
     },
     {
       "name": "Emily Davis",
       "image": "https://i.ibb.co/Brx3Hzd/therapist3.png",
-      "location": "321 Pine Street, Block D",
+      "location": "321 Pine , Block D",
       "available": "Mobile & In Studio"
     },
     {
       "name": "Daniel Brown",
       "image": "https://i.ibb.co/gm9t8Nk/therapis.png",
-      "location": "654 Cedar Avenue, Block E",
+      "location": "654 Cedar , Block E",
       "available": "Mobile & In Studio"
     },
     {
       "name": "Sophia Wilson",
       "image": "https://i.ibb.co/GMv7hV6/therapist1.png",
-      "location": "987 Birch Road, Block F",
+      "location": "987  Road, Block F",
       "available": "Mobile & In Studio"
     },
     {
       "name": "James Martinez",
       "image": "https://i.ibb.co/YDz1vS7/therapist2.png",
-      "location": "111 Cherry Lane, Block G",
+      "location": "111  Lane, Block G",
       "available": "Mobile & In Studio"
     },
     {
       "name": "Olivia Lee",
       "image": "https://i.ibb.co/Brx3Hzd/therapist3.png",
-      "location": "222 Poplar Street, Block H",
+      "location": "222  Street, Block H",
       "available": "Mobile & In Studio"
     },
     {
       "name": "Alexander Kim",
       "image": "https://i.ibb.co/gm9t8Nk/therapis.png",
-      "location": "333 Spruce Avenue, Block I",
+      "location": "333 Spruce , Block I",
       "available": "Mobile & In Studio"
     },
     {
       "name": "Mia Gonzalez",
       "image": "https://i.ibb.co/GMv7hV6/therapist1.png",
-      "location": "444 Willow Road, Block J",
+      "location": "444  Road, Block J",
       "available": "Mobile & In Studio"
     }
   ]

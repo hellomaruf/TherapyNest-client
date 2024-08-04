@@ -15,12 +15,12 @@ import { RiSearchLine } from "react-icons/ri";
 import { FaRegHeart } from "react-icons/fa";
 import { FiSettings } from "react-icons/fi";
 import { AuthContaxt } from "../../services/AuthProvider";
+import { IoIosArrowDown } from "react-icons/io";
+import toast from "react-hot-toast";
 
 function Sidebar() {
-  const { name } = useContext(AuthContaxt);
-  console.log(name);
+  const { user, logout, setUser } = useContext(AuthContaxt);
   const location = useLocation();
-  console.log(location.pathname);
   const currentLocation = location.pathname;
 
   const [showSidebar, setShowSidebar] = useState(false);
@@ -33,20 +33,42 @@ function Sidebar() {
   if (currentLocation === "/signup") {
     return;
   }
-
+  const handleLogout = () => {
+    logout();
+    setUser(null);
+    toast.success("Logout Successfull");
+  };
   return (
     <div>
       <Disclosure as="nav" className="fixed w-full z-10">
         <div className="h-20 bg-white  ">
           <div className="md:ml-[250px] flex items-center h-full justify-between ease-out delay-150 px-4 duration-200">
-            <div className="">hello</div>
+            <div className=" flex gap-4">
+              <div className="avatar">
+                <div className="w-12 rounded-full">
+                  <img src={user?.photoURL} />
+                </div>
+              </div>
+              <div className="flex">
+                <div className="">
+                  <h3 className="font-semibold">{user?.displayName}</h3>
+                  <h3 className="text-gray-500">{user?.email}</h3>
+                </div>
+                <div className="">
+                  <IoIosArrowDown className="text-xl" />
+                </div>
+              </div>
+            </div>
             <div className="flex items-center gap-4">
               <div className="border-r pr-4">
                 <button className="h-10 w-10 flex items-center justify-center border border-[#e7e7e7] rounded-full">
                   <PiBell className="text-xl" />
                 </button>
               </div>
-              <button className="flex items-center gap-2 text-[#f15e4a]">
+              <button
+                onClick={handleLogout}
+                className="flex items-center gap-2 text-[#f15e4a]"
+              >
                 <div className="">
                   <h2>Log Out</h2>
                 </div>{" "}

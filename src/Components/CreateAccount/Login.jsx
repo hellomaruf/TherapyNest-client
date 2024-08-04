@@ -17,7 +17,7 @@ function Login() {
   const handleCheckboxChange = (event) => {
     setIsChecked(event.target.checked);
   };
-  const { signInUser } = useContext(AuthContaxt);
+  const { signInUser, signInWithGoogle } = useContext(AuthContaxt);
   const {
     register,
     handleSubmit,
@@ -31,8 +31,10 @@ function Login() {
       signInUser(email, password)
         .then((res) => {
           console.log(res.user);
-          navigate("/");
-          toast.success("SignIn Successfully!");
+          if (res.user) {
+            navigate("/");
+            toast.success(`SignIn ${email}`);
+          }
         })
         .catch((error) => {
           console.log(error);
@@ -40,6 +42,45 @@ function Login() {
     } else {
       setError("Please check Remember me");
     }
+  };
+
+  // Signin for small device************
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+    if (isChecked === true) {
+      signInUser(email, password)
+        .then((res) => {
+          console.log(res.user);
+          if (res.user) {
+            navigate("/");
+            toast.success(`SignIn ${email}`);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      setError("Please check Remember me");
+    }
+  };
+
+  const hangleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((res) => {
+        console.log(res.user);
+        if (res.user) {
+          navigate("/");
+          toast.success(`SignIn ${res.user.email}`);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        setError(error.message);
+      });
   };
   return (
     <div className="">
@@ -63,7 +104,10 @@ function Login() {
                   </p>
                 </div>
                 <div className="flex items-center gap-10 justify-between">
-                  <button className="btn flex-1  bg-gradient-to-r from-[#e6e6e6] shadow-md to-[#fff]">
+                  <button
+                    onClick={hangleGoogleSignIn}
+                    className="btn flex-1  bg-gradient-to-r from-[#e6e6e6] shadow-md to-[#fff]"
+                  >
                     <img className="w-5" src={google} alt="" />
                     Google
                   </button>
@@ -214,7 +258,10 @@ function Login() {
                   </p>
                 </div>
                 <div className="flex items-center justify-between gap-4">
-                  <button className="btn flex-1  bg-gradient-to-r from-[#e6e6e6] shadow-md to-[#fff]">
+                  <button
+                    onClick={hangleGoogleSignIn}
+                    className="btn flex-1  bg-gradient-to-r from-[#e6e6e6] shadow-md to-[#fff]"
+                  >
                     <img className="w-5" src={google} alt="" />
                     Google
                   </button>
@@ -226,13 +273,14 @@ function Login() {
                 <div className="divider py-6 text-sm">
                   Or Continue with Email
                 </div>
-                <form method="dialog">
+                <form onSubmit={handleSignIn} method="dialog">
                   <div className="">
                     <div className="w-full mt-">
                       <label htmlFor="" className="font-medium">
                         Email
                       </label>
                       <input
+                        name="email"
                         className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
                         type="email"
                         placeholder="Email Address"
@@ -246,6 +294,7 @@ function Login() {
                       </label>
 
                       <input
+                        name="password"
                         className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
                         type="password"
                         placeholder="Password"
@@ -256,6 +305,8 @@ function Login() {
                       <div className="flex items-center gap-2">
                         <input
                           type="checkbox"
+                          onChange={handleCheckboxChange}
+                          checked={isChecked}
                           className="checkbox checkbox-sm [--chkbg:theme(colors.blue.600)]"
                         />
                         <p className="text-sm">Remember me</p>
@@ -267,6 +318,8 @@ function Login() {
                         Forget Password?
                       </a>
                     </div>
+                    <p className="text-sm text-red-600 pt-2">{error}</p>
+
                     <div className="flex mt-8 items-center justify-center">
                       <button className="bg-[#156bca] btn text-white px-20">
                         Sign In

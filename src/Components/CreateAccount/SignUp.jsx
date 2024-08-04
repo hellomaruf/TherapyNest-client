@@ -15,7 +15,6 @@ function SignUp() {
   const handleCheckboxChange = (event) => {
     setIsChecked(event.target.checked);
   };
-  
 
   const {
     register,
@@ -39,7 +38,44 @@ function SignUp() {
             if (res.user) {
               updateUserProfile(name, defaultImg);
               navigate("/");
-              toast.success("SignUp Successfully!");
+              toast.success(`SignUp ${email}`);
+            }
+            setError("");
+          })
+          .catch((error) => {
+            setError(error.message);
+          });
+      } else {
+        console.log("please Accept Terms of Service");
+        setError("please Accept Terms of Service");
+      }
+    } else {
+      console.log("Password did not match");
+      setError("Password did not match");
+    }
+  };
+
+  // SignUp for small device
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const defaultImg = "https://i.ibb.co/XWCGK3x/profile.png";
+    const email = form.email.value;
+    const password = form.password.value;
+    const re_password = form.re_password.value;
+    console.log(name, email, password, re_password);
+    if (password === re_password) {
+      setError("");
+      if (isChecked === true) {
+        setError("");
+        createNewUser(email, password)
+          .then((res) => {
+            console.log(res.user);
+            if (res.user) {
+              updateUserProfile(name, defaultImg);
+              navigate("/");
+              toast.success(`SignUp ${email}`);
             }
             setError("");
           })
@@ -237,14 +273,13 @@ function SignUp() {
                   <h3 className="text-2xl  font-semibold">Sign Up</h3>
                 </div>
 
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form onSubmit={handleSignUp}>
                   <div className="">
                     <div className="w-full">
                       <label htmlFor="" className="font-medium">
                         Name
                       </label>
                       <input
-                        {...register("name", { required: true })}
                         className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
                         type="text"
                         name="name"
@@ -257,7 +292,6 @@ function SignUp() {
                         Email
                       </label>
                       <input
-                        {...register("email", { required: true })}
                         className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
                         name="email"
                         type="email"
@@ -272,7 +306,6 @@ function SignUp() {
                       </label>
 
                       <input
-                        {...register("password", { required: true })}
                         className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
                         type="password"
                         name="password"
@@ -286,7 +319,6 @@ function SignUp() {
                       </label>
 
                       <input
-                        {...register("re_password", { required: true })}
                         className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
                         type="password"
                         name="re_password"

@@ -67,7 +67,7 @@ function TherapistSearch() {
           >
             {therapistData?.map((data, index) => (
               <SwiperSlide key={index}>
-                <div className="card bg-base-100 border border-gray-300 relative">
+                <div className="card bg-base-100 border border-gray-300 h-full relative">
                   <figure className="px-4 pt-4">
                     <img src={data?.image} alt="Shoes" className="rounded-xl" />
                   </figure>

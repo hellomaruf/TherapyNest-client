@@ -2,8 +2,10 @@ import { createContext, useEffect, useState } from "react";
 import { auth } from "./../Firebase/firebase.config";
 import {
   createUserWithEmailAndPassword,
+  GoogleAuthProvider,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
   updateProfile,
 } from "firebase/auth";
@@ -34,9 +36,16 @@ function AuthProvider({ children }) {
     });
   };
 
+  // user logout-------------------------->
   const logout = () => {
     setLoading(true);
     return signOut(auth);
+  };
+
+  // Google login --------------------->
+  const signInWithGoogle = () => {
+    const googleProvider = new GoogleAuthProvider();
+    return signInWithPopup(auth, googleProvider);
   };
 
   // Added observer
@@ -57,6 +66,7 @@ function AuthProvider({ children }) {
     signInUser,
     updateUserProfile,
     logout,
+    signInWithGoogle,
     loading,
     user,
   };
