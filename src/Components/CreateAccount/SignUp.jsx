@@ -2,44 +2,49 @@ import logo from "../../assets/Images/logo.png";
 import loginImg from "../../assets/Images/signin.png";
 import logo1 from "../../assets/Images/logo1.png";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContaxt } from "./../../services/AuthProvider";
+import toast from "react-hot-toast";
 
 function SignUp() {
+  const navigate = useNavigate();
   const [isChecked, setIsChecked] = useState(false);
   const [error, setError] = useState("");
-  const { createNewUser } = useContext(AuthContaxt);
+  const { createNewUser, updateUserProfile } = useContext(AuthContaxt);
   const handleCheckboxChange = (event) => {
     setIsChecked(event.target.checked);
   };
-  console.log(isChecked);
+  
 
   const {
     register,
     handleSubmit,
-
     // formState: { errors },
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
     const name = data?.name;
+    const defaultImg = "https://i.ibb.co/XWCGK3x/profile.png";
     const email = data?.email;
     const password = data?.password;
     const re_password = data?.re_password;
     if (password === re_password) {
-      setError('')
+      setError("");
       if (isChecked === true) {
-        setError('')
+        setError("");
         createNewUser(email, password)
           .then((res) => {
             console.log(res.user);
-            setError('')
+            if (res.user) {
+              updateUserProfile(name, defaultImg);
+              navigate("/");
+              toast.success("SignUp Successfully!");
+            }
+            setError("");
           })
           .catch((error) => {
-          
-            setError(error.message)
+            setError(error.message);
           });
       } else {
         console.log("please Accept Terms of Service");
@@ -64,7 +69,7 @@ function SignUp() {
 
                 <div className=" py-6">
                   <h3 className="text-2xl  font-semibold">
-                    Sign In To Your Account
+                    Sign Up To Your Account
                   </h3>
 
                   <p className="mt-1 text-gray-500 text-sm">
@@ -232,15 +237,17 @@ function SignUp() {
                   <h3 className="text-2xl  font-semibold">Sign Up</h3>
                 </div>
 
-                <form>
+                <form onSubmit={handleSubmit(onSubmit)}>
                   <div className="">
                     <div className="w-full">
                       <label htmlFor="" className="font-medium">
                         Name
                       </label>
                       <input
+                        {...register("name", { required: true })}
                         className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
                         type="text"
+                        name="name"
                         placeholder="@username"
                         aria-label="Name"
                       />
@@ -250,7 +257,9 @@ function SignUp() {
                         Email
                       </label>
                       <input
+                        {...register("email", { required: true })}
                         className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+                        name="email"
                         type="email"
                         placeholder="Enter your email"
                         aria-label="Email Address"
@@ -263,8 +272,10 @@ function SignUp() {
                       </label>
 
                       <input
+                        {...register("password", { required: true })}
                         className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
                         type="password"
+                        name="password"
                         placeholder="Enter Password"
                         aria-label="Password"
                       />
@@ -275,15 +286,19 @@ function SignUp() {
                       </label>
 
                       <input
+                        {...register("re_password", { required: true })}
                         className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
                         type="password"
+                        name="re_password"
                         placeholder="Re-type password"
                         aria-label="Password"
                       />
                     </div>
-                    <div className="flex items-center justify-between mt-3">
+                    <div className=" mt-3">
                       <div className="flex items-center gap-2">
                         <input
+                          checked={isChecked}
+                          onChange={handleCheckboxChange}
                           type="checkbox"
                           className="checkbox checkbox-sm [--chkbg:theme(colors.blue.600)]"
                         />
@@ -291,6 +306,7 @@ function SignUp() {
                           Accept Terms of Service
                         </p>
                       </div>
+                      <p className="text-sm text-red-600 pt-2">{error}</p>
                     </div>
                     <div className="flex mt-8 items-center justify-center">
                       <button className="bg-[#156bca] btn text-white px-20">

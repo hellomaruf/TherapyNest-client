@@ -3,10 +3,44 @@ import logo1 from "../../assets/Images/logo1.png";
 import facebook from "../../assets/Images/facebook.png";
 import google from "../../assets/Images/google.png";
 import loginImg from "../../assets/Images/login.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useContext, useState } from "react";
+import { AuthContaxt } from "../../services/AuthProvider";
+import toast from "react-hot-toast";
 // import mobileLogin from "../../assets/Images/mobileLogin.png";
 
 function Login() {
+  const navigate = useNavigate();
+  const [isChecked, setIsChecked] = useState(false);
+  const [error, setError] = useState("");
+  const handleCheckboxChange = (event) => {
+    setIsChecked(event.target.checked);
+  };
+  const { signInUser } = useContext(AuthContaxt);
+  const {
+    register,
+    handleSubmit,
+    // formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => {
+    console.log(data);
+    const email = data?.email;
+    const password = data?.password;
+    if (isChecked === true) {
+      signInUser(email, password)
+        .then((res) => {
+          console.log(res.user);
+          navigate("/");
+          toast.success("SignIn Successfully!");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      setError("Please check Remember me");
+    }
+  };
   return (
     <div className="">
       <div className="bg-white hidden  sm:block">
@@ -41,14 +75,16 @@ function Login() {
                 <div className="divider py-6 text-sm">
                   Or Continue with Email
                 </div>
-                <form>
+                <form onSubmit={handleSubmit(onSubmit)}>
                   <div className="w-full mt-">
                     <label htmlFor="" className="font-medium">
                       Email
                     </label>
                     <input
+                      {...register("email", { required: true })}
                       className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
                       type="email"
+                      name="email"
                       placeholder="Email Address"
                       aria-label="Email Address"
                     />
@@ -60,8 +96,10 @@ function Login() {
                     </label>
 
                     <input
+                      {...register("password", { required: true })}
                       className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-500 bg-white border rounded-lg  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
                       type="password"
+                      name="password"
                       placeholder="Password"
                       aria-label="Password"
                     />
@@ -70,6 +108,8 @@ function Login() {
                     <div className="flex items-center gap-2">
                       <input
                         type="checkbox"
+                        onChange={handleCheckboxChange}
+                        checked={isChecked}
                         className="checkbox checkbox-sm [--chkbg:theme(colors.blue.600)]"
                       />
                       <p className="text-sm">Remember me</p>
@@ -81,6 +121,8 @@ function Login() {
                       Forget Password?
                     </a>
                   </div>
+                  <p className="text-sm text-red-600 pt-2">{error}</p>
+
                   <div className="flex mt-12 items-center justify-center">
                     <button className="bg-[#156bca] btn text-white px-20">
                       Sign In
