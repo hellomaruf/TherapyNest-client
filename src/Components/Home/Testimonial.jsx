@@ -27,45 +27,45 @@ function Testimonial() {
       >
         {testimonial?.map((data, index) => (
           <SwiperSlide className="p-6 space-y-6" key={index}>
-            <div className=" bg-base-100  grid grid-cols-1 lg:grid-cols-8 border border-gray-300 rounded-xl">
+            <div className=" bg-base-100  grid grid-cols-8 border border-gray-300 rounded-xl">
               <div className="rounded-xl p-3 col-span-3">
                 <img
-                  className="rounded-3xl md:rounded-2xl w-full "
+                  className="rounded-2xl w-full h-full "
                   src={img}
                   alt="Movie"
                 />
               </div>
 
-              <div className=" col-span-5 py-5 px-4 space-y-2">
-                <h2 className=" text-gray-600 flex items-center gap-1">
+              <div className=" col-span-5 py-5 px-2 space-y-1 md:space-y-2">
+                <h2 className=" text-gray-600 text-sm md:text-base flex items-center gap-1">
                   <MdLocationPin />
                   {data?.location}
                 </h2>
                 <h2 className="card-title text-base">
-                  Healing Bodywork{" "}
+                  Healing {" "}
                   <span className="text-[#156bca]">by Cort</span>
                 </h2>
-                <p className="text-gray-600">{data?.description}</p>
+                <p className="text-gray-600 text-sm md:text-base">{data?.description}</p>
               </div>
             </div>
-            <div className=" bg-base-100 grid grid-cols-1 lg:grid-cols-8 border border-gray-300 rounded-xl">
+            <div className=" bg-base-100 grid grid-cols-8 border border-gray-300 rounded-xl">
               <div className="rounded-xl p-3 col-span-3">
                 <img
-                  className="rounded-3xl md:rounded-2xl w-full  "
+                  className="rounded-2xl w-full h-full  "
                   src={img1}
                   alt="Movie"
                 />
               </div>
-              <div className=" col-span-5 py-5 px-4 space-y-2">
-                <h2 className=" text-gray-600 flex items-center gap-1">
+              <div className=" col-span-5 py-5 px-4 space-y-1 md:space-y-2">
+                <h2 className=" text-gray-600 text-sm md:text-base flex items-center gap-1">
                   <MdLocationPin />
                   {data?.location}
                 </h2>
                 <h2 className="card-title text-base">
-                  Healing Bodywork{" "}
+                   Bodywork{" "}
                   <span className="text-[#156bca]">by Cort</span>
                 </h2>
-                <p className="text-gray-600">{data?.description}</p>
+                <p className="text-gray-600 text-sm md:text-base">{data?.description}</p>
               </div>
             </div>
           </SwiperSlide>

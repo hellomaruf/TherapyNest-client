@@ -43,7 +43,10 @@ function Sidebar() {
       <Disclosure as="nav" className="fixed w-full z-10">
         <div className="h-20 bg-white  ">
           <div className="md:ml-[250px] flex items-center h-full justify-between ease-out delay-150 px-4 duration-200">
-            <div className=" flex gap-4">
+            <div className="block md:hidden">
+              <img className="w-[180px] " src={logo} alt="" />
+            </div>
+            <div className=" md:flex gap-4 hidden">
               <div className="avatar">
                 <div className="w-12 rounded-full">
                   <img src={user?.photoURL} />
@@ -51,8 +54,12 @@ function Sidebar() {
               </div>
               <div className="flex">
                 <div className="">
-                  <h3 className="font-semibold">{user?.displayName}</h3>
-                  <h3 className="text-gray-500">{user?.email}</h3>
+                  <h3 className="font-semibold text-sm md:text-base">
+                    {user?.displayName}
+                  </h3>
+                  <h3 className="text-gray-500 text-sm md:text-base">
+                    {user?.email}
+                  </h3>
                 </div>
                 <div className="">
                   <IoIosArrowDown className="text-xl" />
@@ -67,7 +74,7 @@ function Sidebar() {
               </div>
               <button
                 onClick={handleLogout}
-                className="flex items-center gap-2 text-[#f15e4a]"
+                className=" md:flex items-center gap-2 hidden text-[#f15e4a]"
               >
                 <div className="">
                   <h2>Log Out</h2>
@@ -76,12 +83,17 @@ function Sidebar() {
                   <IoLogOutOutline className=" text-xl" />
                 </div>
               </button>
-              <DisclosureButton onClick={handleShowSidebar} className="">
+
+              <DisclosureButton
+                onClick={handleShowSidebar}
+                className=""
+              ></DisclosureButton>
+              <label htmlFor="my-drawer-4" className="drawer-button ">
                 <HiOutlineMenuAlt3
                   aria-hidden="true"
                   className="block md:hidden text-xl"
                 />
-              </DisclosureButton>
+              </label>
             </div>
           </div>
         </div>
@@ -191,6 +203,131 @@ function Sidebar() {
                 <NavLink
                   className={({ isActive }) =>
                     ` p-4 w-full flex gap-4 items-center ${
+                      isActive
+                        ? "bg-[#d4e9ff] text-gray-900 border-l-4 border-[#102c4a] "
+                        : " text-gray-500 "
+                    }`
+                  }
+                  to={"/helpCenter"}
+                >
+                  <FiSettings className="text-xl font-light" /> Settings
+                </NavLink>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="drawer drawer-end">
+          <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
+
+          <div className="drawer-side">
+            <label
+              htmlFor="my-drawer-4"
+              aria-label="close sidebar"
+              className="drawer-overlay"
+            ></label>
+            <ul className="menu bg-base-100 rounded-none text-base-content min-h-full w-64 m-0 p-0">
+              <div className="w-full  bg-[#156bca] space-y-2  p-6 text-center flex flex-col items-center">
+                <img className="rounded-full w-[80px]" src={user?.photoURL} alt="" />
+                <div className="">
+                <h2 className="text-lg font-semibold text-white">{user?.displayName}</h2>
+                <h2 className="text-gray-200">{ user?.email}</h2>
+               </div>
+              </div>
+              <li className=" w-full rounded-none mt-8 ">
+                <NavLink
+                  className={({ isActive }) =>
+                    ` p-4 w-full flex gap-4 rounded-none items-center ${
+                      isActive
+                        ? "bg-[#d4e9ff]  text-gray-900 font-medium border-l-4 border-[#102c4a] "
+                        : "bg-gray-200 text-gray-900 "
+                    }`
+                  }
+                  to={"/"}
+                >
+                  <BiGridAlt className="text-xl font-light" /> Home
+                </NavLink>
+              </li>
+              <li className=" w-full   ">
+                <NavLink
+                  className={({ isActive }) =>
+                    ` p-4 w-full flex gap-4 rounded-none items-center ${
+                      isActive
+                        ? "bg-[#d4e9ff] text-gray-900 border-l-4 border-[#102c4a] "
+                        : " text-gray-500 "
+                    }`
+                  }
+                  to={"/listing"}
+                >
+                  <LuUsers className="text-xl font-light" /> New Listing
+                </NavLink>
+              </li>
+              <li className=" w-full   ">
+                <NavLink
+                  className={({ isActive }) =>
+                    ` p-4 w-full flex gap-4 rounded-none items-center ${
+                      isActive
+                        ? "bg-[#d4e9ff] text-gray-900 border-l-4 border-[#102c4a] "
+                        : " text-gray-500 "
+                    }`
+                  }
+                  to={"/search"}
+                >
+                  <RiSearchLine className="text-xl font-light" /> Search
+                </NavLink>
+              </li>
+              <li className=" w-full   ">
+                <NavLink
+                  className={({ isActive }) =>
+                    ` p-4 w-full flex gap-4 rounded-none items-center ${
+                      isActive
+                        ? "bg-[#d4e9ff] text-gray-900 border-l-4 border-[#102c4a] "
+                        : " text-gray-500 "
+                    }`
+                  }
+                  to={"/about"}
+                >
+                  <BiMessageSquareDetail className="text-xl font-light" /> About
+                </NavLink>
+              </li>
+              <li className=" w-full   ">
+                <NavLink
+                  className={({ isActive }) =>
+                    ` p-4 w-full flex gap-4 rounded-none items-center ${
+                      isActive
+                        ? "bg-[#d4e9ff] text-gray-900 border-l-4 border-[#102c4a] "
+                        : " text-gray-500 "
+                    }`
+                  }
+                  to={"/favorites"}
+                >
+                  <FaRegHeart className="text-xl font-light" /> Favorites
+                </NavLink>
+              </li>
+
+              <div className="py-4">
+                <hr className="" />
+              </div>
+
+              <li className=" w-full   ">
+                <NavLink
+                  className={({ isActive }) =>
+                    ` p-4 w-full flex gap-4 rounded-none items-center ${
+                      isActive
+                        ? "bg-[#d4e9ff] text-gray-900 border-l-4 border-[#102c4a] "
+                        : " text-gray-500 "
+                    }`
+                  }
+                  to={"/helpCenter"}
+                >
+                  <BiMessageSquareError className="text-xl font-light" /> Help
+                  Center
+                </NavLink>
+              </li>
+              <li className=" w-full   ">
+                <NavLink
+                  className={({ isActive }) =>
+                    ` p-4 w-full flex gap-4 rounded-none items-center ${
                       isActive
                         ? "bg-[#d4e9ff] text-gray-900 border-l-4 border-[#102c4a] "
                         : " text-gray-500 "
