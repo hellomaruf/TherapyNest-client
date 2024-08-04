@@ -8,22 +8,14 @@ Welcome to therapyNest, a platform dedicated to providing mental health support 
 
 Check out the live version of TherapyNest: [Live Demo Link](https://therapy-nest-client.vercel.app/)
 
-## Features
-
-- User authentication
-- Browse and book sessions with therapists
-- Secure and private communication
-- Customizable user profiles
-
 ## Installation
 
 1. **Clone the repository:**
 
-   ```bash
-   git clone https://github.com/hellomaruf/TherapyNest-client.git
-   cd therapynest
-
-   ```
+```bash
+git clone https://github.com/hellomaruf/TherapyNest-client.git
+cd therapynest
+```
 
 2. **Install dependencies:**
 
